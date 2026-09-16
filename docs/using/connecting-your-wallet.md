@@ -12,6 +12,8 @@ FundKeep v1 runs on Soroban Testnet. In Freighter, go to **Settings → Network*
 
 Fund your testnet account using [Stellar Friendbot](https://friendbot.stellar.org/?addr=YOUR_ADDRESS) if you need XLM for transaction fees.
 
+To fund a goal, your wallet must also hold the test USDC asset configured by FundKeep. Creating a goal creates its on-chain record; it does not transfer USDC. Funding happens separately from the goal details page.
+
 ## Connect in the App
 
 1. Open the FundKeep web app.
@@ -19,10 +21,6 @@ Fund your testnet account using [Stellar Friendbot](https://friendbot.stellar.or
 3. Freighter will prompt you to approve the connection. Approve it.
 4. Your abbreviated wallet address will appear in the nav once connected.
 
-## Demo Mode
-
-If Freighter is not installed, the app falls back to a read-only demo mode using a placeholder address (`GAK3X57J29PQR8LMVW7890STUVWXNEON789`). You can browse the interface and see seed data, but no real transactions will be signed. Install Freighter to use the full application.
-
 ## Disconnect
 
-Click your wallet address in the nav and select **Disconnect**. Your goal data persists in local browser storage — it will re-appear when you reconnect with the same address.
+Click your wallet address in the nav and select **Disconnect**. On-chain goal balances remain associated with your wallet. Locally entered goal titles, descriptions, and preferences are stored in that browser; the indexer restores on-chain goal and activity data when configured.

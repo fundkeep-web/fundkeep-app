@@ -1,0 +1,41 @@
+$schema: https://api.gitbook.com/gitbook-docs.yaml
+site:
+  title: FundKeep
+  structure:
+    - type: space
+      key: space-introduction
+      title: Introduction
+      path: introduction
+      default: true
+      content:
+        directory: ./introduction
+    - type: space
+      key: space-concepts
+      title: Core Concepts
+      path: concepts
+      content:
+        directory: ./concepts
+    - type: space
+      key: space-contract
+      title: Smart Contract
+      path: contract
+      content:
+        directory: ./contract
+    - type: space
+      key: space-using
+      title: Using FundKeep
+      path: using
+      content:
+        directory: ./using
+    - type: space
+      key: space-developer
+      title: Developer Guide
+      path: developer
+      content:
+        directory: ./developer
+    - type: space
+      key: space-contributing
+      title: Contributing
+      path: contributing
+      content:
+        directory: ./contributing

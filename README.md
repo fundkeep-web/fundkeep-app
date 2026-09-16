@@ -46,7 +46,7 @@ The frontend writes to the chain directly via RPC (through `@fundkeep/sdk`, sign
 
 ### Prerequisites
 
-- Node.js v20+
+- Node.js v22.12+
 - [Freighter](https://freighter.app) browser extension set to **Testnet**
 
 ### Install and Run
@@ -59,13 +59,13 @@ cp .env.example .env.local  # fill in contract IDs — see Environment Variables
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). The app loads with seed data in demo mode so you can explore the UI without a wallet connection — no env vars required for that. Real on-chain use requires `NEXT_PUBLIC_CONTRACT_ID` and `NEXT_PUBLIC_USDC_CONTRACT_ID` to be set, which means deploying the contract first — see [`fundkeep-contract`](https://github.com/Michealshodipo56/fundkeep-contract).
+Open [http://localhost:3000](http://localhost:3000). FundKeep requires Freighter and the configured Testnet contract values for wallet actions. Before creating or funding a goal, fund the connected Testnet account with XLM for transaction fees and make sure it holds the configured test USDC asset. See [`fundkeep-contract`](https://github.com/Michealshodipo56/fundkeep-contract) for deployment details.
 
 ---
 
 ## Environment Variables
 
-See [`.env.example`](.env.example) for the full list with descriptions. At minimum, real (non-demo) usage needs `NEXT_PUBLIC_CONTRACT_ID` and `NEXT_PUBLIC_USDC_CONTRACT_ID`. `NEXT_PUBLIC_INDEXER_URL` is optional — without it, the activity feed and cross-device goal sync fall back to local-only storage.
+See [`.env.example`](.env.example) for the full list with descriptions. Wallet actions require `NEXT_PUBLIC_CONTRACT_ID`, `NEXT_PUBLIC_USDC_CONTRACT_ID`, and Testnet RPC configuration. `NEXT_PUBLIC_INDEXER_URL` is optional; without it, on-chain goal metadata and activity cannot be synchronized across devices.
 
 ---
 

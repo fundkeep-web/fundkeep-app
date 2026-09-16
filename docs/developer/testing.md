@@ -48,7 +48,7 @@ This repo has no automated test suite yet — `npm run lint` and `npx tsc --noEm
 
 For a full integration test against the live Soroban Testnet:
 
-1. Deploy the contract: `fundkeep-contract/scripts/deploy.sh` (generates and funds a testnet identity, deploys, and prints a test USDC contract ID too).
+1. Create and fund a Testnet deployer identity, then deploy the contract with `fundkeep-contract/scripts/deploy.sh`. The script prints the contract ID; configure a separately verified Testnet token SAC as `NEXT_PUBLIC_USDC_CONTRACT_ID`.
 2. Point `fundkeep-app/.env.local` and `fundkeep-indexer/.env` at the printed contract ID.
 3. Fund your Freighter testnet account with XLM via [Friendbot](https://friendbot.stellar.org) and get some of the test USDC from whoever holds the issuer key for the token printed in step 1.
 4. Run through create → deposit → withdraw in the running app, and confirm `fundkeep-indexer`'s `/api/activity/:owner` reflects each step.

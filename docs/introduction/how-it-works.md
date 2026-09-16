@@ -1,6 +1,6 @@
 # How It Works
 
-1. **Connect your Freighter wallet** to the FundKeep web app — testnet or mainnet, your choice. The wallet is used to sign all transactions; FundKeep never holds private keys.
+1. **Connect your Freighter wallet** to the FundKeep web app on **Stellar Testnet**. The wallet is used to sign all transactions; FundKeep never holds private keys.
 
 2. **Create a savings goal.** Give it a title, pick a category (laptop, camera, travel, or other), set a target USDC amount, and pick a deadline date. Calling `create_goal` on the Soroban contract stores the goal on-chain, keyed by an auto-incrementing `goal_id`.
 

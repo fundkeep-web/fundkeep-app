@@ -38,7 +38,7 @@ FundKeep is split across four repositories, each with a single responsibility:
 
 - **Writes** (create a goal, deposit, withdraw, check a deadline) go straight from the browser to Soroban RPC — the frontend builds the transaction via `@fundkeep/sdk`, Freighter signs it, and it's submitted directly. The indexer is never in the write path.
 - **Reads** for the dashboard and activity feed come from the indexer's REST API (`/api/goals/:owner`, `/api/activity/:owner`), which mirrors on-chain state derived from the contract's events. This avoids re-deriving the full goal/activity history client-side on every page load.
-- **Demo mode** (no Freighter installed) never touches the chain or the indexer — it's fully local, backed by `localStorage`, so the app is explorable without a wallet.
+- **Local metadata** such as goal titles, descriptions, and preferences is stored in the browser. Balances and activity are derived from on-chain transactions and, when configured, the indexer.
 
 ## Why split into four repos
 

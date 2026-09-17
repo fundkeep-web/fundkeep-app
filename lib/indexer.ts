@@ -6,6 +6,8 @@ export interface IndexerGoal {
   currentAmount: string;
   deadline: number;
   status: "LOCKED" | "UNLOCKED" | "WITHDRAWN";
+  title?: string | null;
+  category?: string | null;
   createdAtLedger: number;
   updatedAtLedger: number;
 }
@@ -23,6 +25,26 @@ export interface IndexerActivity {
 
 function baseUrl(): string | null {
   return process.env.NEXT_PUBLIC_INDEXER_URL ?? null;
+}
+
+export async function syncGoalMetadata(
+  owner: string,
+  goalId: number,
+  metadata: { title?: string; category?: string }
+): Promise<boolean> {
+  const base = baseUrl();
+  if (!base) return false;
+
+  try {
+    const res = await fetch(`${base}/api/goals/${owner}/${goalId}/metadata`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(metadata),
+    });
+    return res.ok;
+  } catch {
+    return false;
+  }
 }
 
 /** Never throws — returns an empty list if the indexer isn't configured or unreachable. */

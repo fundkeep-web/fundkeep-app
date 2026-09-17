@@ -17,7 +17,7 @@ import {
   getOnChainConfigurationError,
   getUsdcContractId,
 } from "./contract";
-import { fetchIndexedActivity, fetchIndexedGoals } from "./indexer";
+import { fetchIndexedActivity, fetchIndexedGoals, syncGoalMetadata } from "./indexer";
 import { fetchUsdcBalance } from "./usdc-balance";
 import {
   accountExistsOnNetwork,
@@ -34,6 +34,7 @@ export interface SavingsGoal {
   id: string;
   title: string;
   description?: string;
+  category?: string;
   cadence: SaveCadence;
   deadline: string;
   saved: number;
@@ -324,8 +325,9 @@ export function WalletProvider({ children }: { children: ReactNode }) {
             const existing = byId.get(id);
             return {
               id,
-              title: existing?.title ?? `Savings Goal #${ig.goalId}`,
+              title: existing?.title ?? (ig.title || `Savings Goal #${ig.goalId}`),
               description: existing?.description,
+              category: existing?.category ?? (ig.category || undefined),
               cadence: existing?.cadence ?? "weekly",
               deadline: existing?.deadline ?? ledgerSecondsToDate(ig.deadline),
               saved: fromStroops(BigInt(ig.currentAmount)),
@@ -480,10 +482,13 @@ export function WalletProvider({ children }: { children: ReactNode }) {
         throw new Error(explainChainError(err));
       }
 
+      const category = (params as { category?: string }).category;
+
       const newGoal: SavingsGoal = {
         id,
         title: validated.title,
         description: validated.description,
+        category,
         cadence: validated.cadence,
         deadline: validated.deadline,
         saved: 0,
@@ -493,6 +498,16 @@ export function WalletProvider({ children }: { children: ReactNode }) {
       };
 
       setGoals((prev) => [newGoal, ...prev]);
+
+      // Best-effort off-chain sync to the indexer (non-blocking for chain flow)
+      const numericId = Number(id);
+      if (!Number.isNaN(numericId)) {
+        syncGoalMetadata(walletAddress, numericId, {
+          title: validated.title,
+          category,
+        }).catch(() => {});
+      }
+
       addActivity({
         type: "create",
         goalId: newGoal.id,

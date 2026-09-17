@@ -85,6 +85,31 @@ Soroban contracts have no internal timer. `check_deadline` must be called by an 
 
 ---
 
+---
+
+## Wallet & Testnet Funding Prerequisites
+
+To create and deposit into savings goals on FundKeep, ensure your wallet and account meet these prerequisites:
+
+### 1. Distinguishing Goal Creation vs. Funding a Goal
+
+| Action | Prerequisites Needed | What Happens On-Chain |
+| :--- | :--- | :--- |
+| **Creating a Goal** (`create_goal`) | Connected Freighter wallet + Testnet **XLM** (for gas fee) | Initializes the goal record on the Soroban smart contract with target amount and deadline. No USDC is locked yet. |
+| **Funding a Goal** (`deposit`) | Connected Freighter wallet + Testnet **XLM** (gas) + Testnet **USDC** balance + **USDC Trustline** | Pulls testnet USDC from your wallet into contract escrow. Cumulative deposits count toward unlocking the goal. |
+
+### 2. Setting Up Stellar Testnet & Funding XLM
+1. Open the [Freighter Wallet](https://freighter.app) browser extension and toggle the network to **Testnet** (Settings > Network > Testnet).
+2. Fund your testnet account with XLM for transaction gas fees using the official [Stellar Laboratory Friendbot](https://laboratory.stellar.org/#account-creator?network=test) or [Stellar Testnet Faucet](https://stellar.org/developers).
+
+### 3. Establishing a USDC Trustline
+Before you can receive or deposit USDC on Stellar Testnet:
+1. In Freighter or Stellar Laboratory, establish a trustline for the testnet USDC asset contract.
+2. Ensure the issuer and contract ID match `NEXT_PUBLIC_USDC_CONTRACT_ID` in your `.env.local`.
+3. If a deposit transaction fails with a trustline or balance error, verify that your account has accepted the asset trustline and holds sufficient testnet USDC.
+
+---
+
 ## Testing
 
 ```bash

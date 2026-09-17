@@ -43,6 +43,7 @@ export default function GoalDetailPage({ goalId }: { goalId: string }) {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [receipt, setReceipt] = useState<TxReceipt | null>(null);
+  const [copiedShare, setCopiedShare] = useState(false);
 
   const goal = goals.find((item) => item.id === goalId);
   const goalActivity = useMemo(
@@ -117,7 +118,23 @@ export default function GoalDetailPage({ goalId }: { goalId: string }) {
               <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">{goal.title}</h1>
             </div>
           </div>
-          <span className={`w-fit px-3 py-1.5 rounded-lg border text-xs font-bold tracking-wide ${statusClass(goal.status)}`}>{goal.status}</span>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                const url = `${window.location.origin}/goal/public/${goal.id}`;
+                navigator.clipboard?.writeText(url);
+                setCopiedShare(true);
+                setTimeout(() => setCopiedShare(false), 2000);
+              }}
+              className="px-3 py-1.5 rounded-lg border border-white/10 bg-[#161616] hover:bg-white/10 text-xs font-semibold text-white/80 hover:text-white flex items-center gap-1.5 transition-colors"
+              title="Share goal progress"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+              <span>{copiedShare ? "Link Copied!" : "Share"}</span>
+            </button>
+            <span className={`w-fit px-3 py-1.5 rounded-lg border text-xs font-bold tracking-wide ${statusClass(goal.status)}`}>{goal.status}</span>
+          </div>
         </header>
 
         <section className="rounded-2xl bg-[#141414] border border-white/10 p-5 sm:p-7">

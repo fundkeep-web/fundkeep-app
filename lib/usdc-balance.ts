@@ -70,3 +70,35 @@ export async function fetchUsdcBalance(
   }
   return last;
 }
+
+export interface TrustlineCheckResult {
+  hasTrustline: boolean;
+  accountMissing: boolean;
+  error?: string;
+}
+
+/**
+ * Checks whether the connected account has an active USDC trustline via Horizon.
+ */
+export async function checkUsdcTrustline(address: string): Promise<TrustlineCheckResult> {
+  if (!address) return { hasTrustline: false, accountMissing: true };
+  try {
+    const server = new Horizon.Server(horizonUrl());
+    const account = await withTimeout(
+      server.loadAccount(address),
+      8_000,
+      "Timed out checking trustline."
+    );
+    const usdc = account.balances.find((b) => "asset_code" in b && b.asset_code === "USDC");
+    return {
+      hasTrustline: !!usdc,
+      accountMissing: false,
+    };
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    if (/not found|404/i.test(msg)) {
+      return { hasTrustline: false, accountMissing: true };
+    }
+    return { hasTrustline: false, accountMissing: false, error: msg };
+  }
+}

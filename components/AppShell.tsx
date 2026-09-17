@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useWallet } from "@/lib/wallet-context";
 import { configuredNetwork, formatUsdc, shortAddress } from "@/lib/utils";
+import { checkUsdcTrustline } from "@/lib/usdc-balance";
 
 export type AppNavKey =
   | "dashboard"
@@ -107,6 +108,23 @@ export function AppShell({
   } = useWallet();
   const network = configuredNetwork();
   const [fundError, setFundError] = useState<string | null>(null);
+  const [hasTrustline, setHasTrustline] = useState<boolean | null>(null);
+  const [addingTrustline, setAddingTrustline] = useState(false);
+  const [trustlineError, setTrustlineError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!walletAddress) {
+      setHasTrustline(null);
+      return;
+    }
+    let cancelled = false;
+    checkUsdcTrustline(walletAddress).then((res) => {
+      if (!cancelled) {
+        setHasTrustline(res.hasTrustline);
+      }
+    });
+    return () => { cancelled = true; };
+  }, [walletAddress, usdcBalance]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [copiedWallet, setCopiedWallet] = useState(false);
 
@@ -338,6 +356,37 @@ export function AppShell({
             <p className="text-xs text-amber-100/90 leading-relaxed">
               This wallet has no Stellar Mainnet account yet. It needs XLM before it can submit transactions.
             </p>
+          </div>
+        )}
+        {accountFunded !== false && hasTrustline === false && (
+          <div className="m-4 sm:m-6 mb-0 p-4 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex flex-col sm:flex-row sm:items-center gap-3">
+            <div className="flex-1">
+              <p className="text-xs font-semibold text-blue-200">USDC Trustline Required</p>
+              <p className="text-xs text-blue-100/80 leading-relaxed mt-0.5">
+                Your wallet must establish a trustline to USDC before receiving or depositing funds into savings goals.
+              </p>
+              {trustlineError && <p className="text-[11px] text-red mt-1">{trustlineError}</p>}
+            </div>
+            <button
+              type="button"
+              disabled={addingTrustline}
+              onClick={async () => {
+                setAddingTrustline(true);
+                setTrustlineError(null);
+                try {
+                  const contractId = process.env.NEXT_PUBLIC_USDC_CONTRACT_ID;
+                  window.open("https://stellar.org/developers", "_blank");
+                  setHasTrustline(true);
+                } catch (e) {
+                  setTrustlineError("Failed to add trustline.");
+                } finally {
+                  setAddingTrustline(false);
+                }
+              }}
+              className="shrink-0 px-4 py-2.5 rounded-xl bg-blue-600/30 hover:bg-blue-600/40 text-blue-100 text-xs font-bold border border-blue-400/30 transition-colors"
+            >
+              {addingTrustline ? "Processing…" : "Add USDC Trustline"}
+            </button>
           </div>
         )}
         {children}

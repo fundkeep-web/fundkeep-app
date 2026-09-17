@@ -42,7 +42,20 @@ Tests live in `src/test.rs`. Each test creates a fresh contract environment, reg
 
 ## Frontend
 
-This repo has no automated test suite yet — `npm run lint` and `npx tsc --noEmit` are what CI runs. The wallet/chain-interaction logic itself is covered by the SDK's tests (`FundKeepClient`, which `lib/wallet-context.tsx` wraps) rather than duplicated here.
+The frontend repository currently does not have an automated unit test suite set up (such as Jest or Vitest). Quality assurance and regressions are prevented using static analysis, strict TypeScript validation, and build verification matching `package.json`:
+
+```bash
+# Run ESLint validation
+npm run lint
+
+# Check TypeScript compiler types without emitting files
+npx tsc --noEmit
+
+# Run full Next.js production build verification
+npm run build
+```
+
+Underlying contract interaction, XDR parameter building, and RPC error decoding are directly covered by `@fundkeep/sdk`'s automated test suite.
 
 ## Manual End-to-End Testing
 

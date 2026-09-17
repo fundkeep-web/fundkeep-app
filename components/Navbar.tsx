@@ -5,10 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
 const navLinks = [
-  { label: "Features", href: "#hero" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Security", href: "#security" },
-  { label: "Ecosystem", href: "#ecosystem" },
+  { label: "Features", href: "/#features", external: false },
+  { label: "How It Works", href: "/#how-it-works", external: false },
+  { label: "Security", href: "/#security", external: false },
+  { label: "Docs", href: "https://entity-6.gitbook.io/fundkeep", external: true },
 ];
 
 export default function Navbar() {
@@ -54,6 +54,7 @@ export default function Navbar() {
             <a
               key={link.label}
               href={link.href}
+              {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               className="text-sm text-white/60 hover:text-white transition-colors duration-150 font-medium"
             >
               {link.label}
@@ -108,6 +109,7 @@ export default function Navbar() {
                 <a
                   key={link.label}
                   href={link.href}
+                  {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   onClick={() => setMenuOpen(false)}
                   className="block px-3 py-3 rounded-lg text-white/70 hover:text-white hover:bg-white/5 transition-colors font-medium text-sm min-h-[44px] flex items-center"
                 >

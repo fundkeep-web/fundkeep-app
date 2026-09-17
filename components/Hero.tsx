@@ -41,6 +41,7 @@ export default function Hero() {
       className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden"
       aria-label="Hero section"
     >
+      <div id="features" className="absolute top-0" />
       {/* Background grid shimmer */}
       <div
         className="pointer-events-none absolute inset-0"

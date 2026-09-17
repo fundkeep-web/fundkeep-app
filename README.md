@@ -88,10 +88,12 @@ Soroban contracts have no internal timer. `check_deadline` must be called by an 
 ## Testing
 
 ```bash
-npm run lint
+npm run lint         # ESLint static analysis
+npx tsc --noEmit     # TypeScript typechecking
+npm run build        # Production build verification
 ```
 
-Contract tests live in `fundkeep-contract` (`cargo test`); SDK and indexer tests live in their own repos (`npm test`).
+Contract tests live in `fundkeep-contract` (`cargo test`); SDK and indexer tests live in their own repos (`npm test`). See [`docs/developer/testing.md`](docs/developer/testing.md) for testing details.
 
 ---
 

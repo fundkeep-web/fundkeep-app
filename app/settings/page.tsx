@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useWallet } from "@/lib/wallet-context";
 import { AppShell } from "@/components/AppShell";
+import { useTheme } from "@/components/ThemeProvider";
 import { configuredNetwork, formatUsdc, shortAddress } from "@/lib/utils";
 import { DISPLAY_NAME_MAX_LENGTH } from "@/lib/validation";
 
@@ -19,6 +20,7 @@ export default function SettingsPage() {
     setAnimations,
     disconnect,
   } = useWallet();
+  const { theme, toggleTheme } = useTheme();
 
   const [activeTab, setActiveTab] = useState<TabType>("profile");
   const [nameDraft, setNameDraft] = useState(profile.displayName);
@@ -125,6 +127,26 @@ export default function SettingsPage() {
             {activeTab === "preferences" && (
               <div className="rounded-2xl bg-[#141414] border border-white/10 p-6 flex flex-col gap-5">
                 <h2 className="text-base font-bold text-white">Preferences</h2>
+                <div className="flex items-center justify-between py-2 border-b border-white/5">
+                  <div>
+                    <p className="text-xs font-bold text-white">Theme</p>
+                    <p className="text-[11px] text-white/40">Switch between dark and light mode.</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={toggleTheme}
+                    className={`w-12 h-6 rounded-full relative p-1 transition-colors ${
+                      theme === "dark" ? "bg-red" : "bg-white/20"
+                    }`}
+                    aria-label="Toggle dark/light theme"
+                  >
+                    <span
+                      className={`block w-4 h-4 rounded-full bg-white transition-transform ${
+                        theme === "dark" ? "translate-x-6" : "translate-x-0"
+                      }`}
+                    />
+                  </button>
+                </div>
                 <div className="flex items-center justify-between py-2 border-b border-white/5">
                   <div>
                     <p className="text-xs font-bold text-white">Currency</p>

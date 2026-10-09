@@ -4,9 +4,9 @@ FundKeep is split across four repositories, each with a single responsibility:
 
 | Repo | Role |
 |---|---|
-| [`fundkeep-contract`](https://github.com/Michealshodipo56/fundkeep-contract) | The Soroban smart contract (Rust). Source of truth for every goal's state. |
-| [`fundkeep-sdk`](https://github.com/Michealshodipo56/fundkeep-sdk) | `@fundkeep/sdk` — a TypeScript client that builds, signs, and submits contract calls. |
-| [`fundkeep-indexer`](https://github.com/Michealshodipo56/fundkeep-indexer) | Polls the contract's events into SQLite and serves them over a small REST API. |
+| [`fundkeep-contract`](https://github.com/fundkeep-web/fundkeep-contract) | The Soroban smart contract (Rust). Source of truth for every goal's state. |
+| [`fundkeep-sdk`](https://github.com/fundkeep-web/fundkeep-sdk) | `@fundkeep/sdk` — a TypeScript client that builds, signs, and submits contract calls. |
+| [`fundkeep-indexer`](https://github.com/fundkeep-web/fundkeep-indexer) | Polls the contract's events into SQLite and serves them over a small REST API. |
 | `fundkeep-app` (this repo) | The Next.js frontend. |
 
 ## Topology

@@ -32,5 +32,9 @@
   * [Indexer API Reference](developer/indexer-api-reference.md)
   * [Testing](developer/testing.md)
 
+* [Operations](operations/deployment-status.md)
+  * [Deployment Status](operations/deployment-status.md)
+  * [Submission Demo](operations/submission-demo.md)
+
 * [Contributing](contributing/how-to-contribute.md)
   * [How to Contribute](contributing/how-to-contribute.md)

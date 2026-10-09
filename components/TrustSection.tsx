@@ -140,7 +140,7 @@ export default function TrustSection() {
               <span>
                 Source code available on{" "}
                 <a
-                  href="https://github.com/Michealshodipo56/fundkeep-app"
+                  href="https://github.com/fundkeep-web/fundkeep-app"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/60 hover:text-white underline underline-offset-2 transition-colors"

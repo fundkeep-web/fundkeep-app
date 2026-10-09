@@ -1,0 +1,5 @@
+root: ./
+
+structure:
+  readme: introduction/what-is-fundkeep.md
+  summary: SUMMARY.md

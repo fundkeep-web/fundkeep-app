@@ -2,10 +2,10 @@
 
 FundKeep is split across four repos — see [System Architecture](../introduction/architecture.md):
 
-- [`fundkeep-contract`](https://github.com/Michealshodipo56/fundkeep-contract) — the Soroban contract (Rust)
-- [`fundkeep-sdk`](https://github.com/Michealshodipo56/fundkeep-sdk) — the TypeScript client
-- [`fundkeep-indexer`](https://github.com/Michealshodipo56/fundkeep-indexer) — the event indexer and REST API
-- [`fundkeep-app`](https://github.com/Michealshodipo56/fundkeep-app) — the frontend and this documentation
+- [`fundkeep-contract`](https://github.com/fundkeep-web/fundkeep-contract) — the Soroban contract (Rust)
+- [`fundkeep-sdk`](https://github.com/fundkeep-web/fundkeep-sdk) — the TypeScript client
+- [`fundkeep-indexer`](https://github.com/fundkeep-web/fundkeep-indexer) — the event indexer and REST API
+- [`fundkeep-app`](https://github.com/fundkeep-web/fundkeep-app) — the frontend and this documentation
 
 Find the right repo for your change before opening a PR — each has its own `CONTRIBUTING.md`, `SECURITY.md`, and CI, but they all follow the same conventions below.
 
@@ -13,10 +13,10 @@ Find the right repo for your change before opening a PR — each has its own `CO
 
 Check each repo's Issues tab, filtered for `good first issue`:
 
-- [fundkeep-contract issues](https://github.com/Michealshodipo56/fundkeep-contract/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
-- [fundkeep-sdk issues](https://github.com/Michealshodipo56/fundkeep-sdk/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
-- [fundkeep-indexer issues](https://github.com/Michealshodipo56/fundkeep-indexer/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
-- [fundkeep-app issues](https://github.com/Michealshodipo56/fundkeep-app/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+- [fundkeep-contract issues](https://github.com/fundkeep-web/fundkeep-contract/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+- [fundkeep-sdk issues](https://github.com/fundkeep-web/fundkeep-sdk/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+- [fundkeep-indexer issues](https://github.com/fundkeep-web/fundkeep-indexer/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+- [fundkeep-app issues](https://github.com/fundkeep-web/fundkeep-app/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 
 Issues are labeled by complexity (`complexity:low`/`medium`/`high`) and by which layer they touch (`contracts`, `sdk`, `indexer`, `frontend`).
 

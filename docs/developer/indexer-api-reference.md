@@ -1,6 +1,6 @@
 # Indexer API Reference
 
-[`fundkeep-indexer`](https://github.com/Michealshodipo56/fundkeep-indexer) polls the FundKeep contract's on-chain events into SQLite and serves them over a small REST API. It's the read side of the app — see [System Architecture](../introduction/architecture.md) for how it fits with the frontend and contract.
+[`fundkeep-indexer`](https://github.com/fundkeep-web/fundkeep-indexer) polls the FundKeep contract's on-chain events into SQLite and serves them over a small REST API. It's the read side of the app — see [System Architecture](../introduction/architecture.md) for how it fits with the frontend and contract.
 
 Base URL is whatever you configure as `NEXT_PUBLIC_INDEXER_URL` in the frontend — for local development, `http://localhost:4000`.
 

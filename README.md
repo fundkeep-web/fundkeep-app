@@ -2,6 +2,10 @@
 
 Lock USDC toward a savings goal on Stellar. Funds are only withdrawable when your target is reached or your deadline passes — enforced on-chain by a Soroban smart contract, not a UI promise.
 
+**[Open the Testnet app](https://fundkeep.vercel.app)** · **[Read the documentation](https://entity-6.gitbook.io/fundkeep)** · **[View the contract](https://stellar.expert/explorer/testnet/contract/CBYUMUNDBGT5JTYX62SSFH5NTK2ELLRT2PP3LLZOI757JB4BULDDDFAH)** · **[Check indexer health](https://fundkeep-indexer.onrender.com/health)**
+
+> **Testnet release.** FundKeep is ready for demonstration and contributor development, not Mainnet funds. The contract has not received an independent security audit.
+
 ---
 
 ## What It Does
@@ -23,9 +27,9 @@ FundKeep is split across four repos:
 
 | Repo | Role |
 |---|---|
-| [`fundkeep-contract`](https://github.com/Michealshodipo56/fundkeep-contract) | The Soroban smart contract (Rust) — source of truth for goal state |
-| [`fundkeep-sdk`](https://github.com/Michealshodipo56/fundkeep-sdk) | `@fundkeep/sdk` — TypeScript client that builds/signs/submits contract calls |
-| [`fundkeep-indexer`](https://github.com/Michealshodipo56/fundkeep-indexer) | Indexes contract events into SQLite, serves the dashboard/activity feed |
+| [`fundkeep-contract`](https://github.com/fundkeep-web/fundkeep-contract) | The Soroban smart contract (Rust) — source of truth for goal state |
+| [`fundkeep-sdk`](https://github.com/fundkeep-web/fundkeep-sdk) | `@fundkeep/sdk` — TypeScript client that builds/signs/submits contract calls |
+| [`fundkeep-indexer`](https://github.com/fundkeep-web/fundkeep-indexer) | Indexes contract events into SQLite, serves the dashboard/activity feed |
 | `fundkeep-app` (this repo) | The Next.js frontend |
 
 The frontend writes to the chain directly via RPC (through `@fundkeep/sdk`, signed by Freighter) and reads goal/activity history from the indexer's REST API.
@@ -52,26 +56,26 @@ The frontend writes to the chain directly via RPC (through `@fundkeep/sdk`, sign
 ### Install and Run
 
 ```bash
-git clone https://github.com/Michealshodipo56/fundkeep-app.git
+git clone https://github.com/fundkeep-web/fundkeep-app.git
 cd fundkeep-app
 npm install
 cp .env.example .env.local  # fill in contract IDs — see Environment Variables below
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). FundKeep requires Freighter and the configured Testnet contract values for wallet actions. Before creating or funding a goal, fund the connected Testnet account with XLM for transaction fees and make sure it holds the configured test USDC asset. See [`fundkeep-contract`](https://github.com/Michealshodipo56/fundkeep-contract) for deployment details.
+Open [http://localhost:3000](http://localhost:3000). FundKeep requires Freighter and the configured Testnet contract values for wallet actions. Before creating or funding a goal, fund the connected Testnet account with XLM for transaction fees and make sure it holds the configured test USDC asset. See [`fundkeep-contract`](https://github.com/fundkeep-web/fundkeep-contract) for deployment details.
 
 ---
 
 ## Environment Variables
 
-See [`.env.example`](.env.example) for the full list with descriptions. Wallet actions require `NEXT_PUBLIC_CONTRACT_ID`, `NEXT_PUBLIC_USDC_CONTRACT_ID`, and Testnet RPC configuration. `NEXT_PUBLIC_INDEXER_URL` is optional; without it, on-chain goal metadata and activity cannot be synchronized across devices.
+See [`.env.example`](.env.example) for the full list with descriptions. Wallet actions require `NEXT_PUBLIC_CONTRACT_ID`, `NEXT_PUBLIC_USDC_CONTRACT_ID`, and Testnet RPC configuration. The public app uses `https://fundkeep-indexer.onrender.com`; without an indexer, on-chain goal metadata and activity cannot be synchronized across devices.
 
 ---
 
 ## Contract
 
-The Soroban contract exposes five functions — see [`fundkeep-contract`](https://github.com/Michealshodipo56/fundkeep-contract) for the full spec, source, and tests:
+The Soroban contract exposes five functions — see [`fundkeep-contract`](https://github.com/fundkeep-web/fundkeep-contract) for the full spec, source, and tests:
 
 | Function | Auth | Description |
 |---|---|---|
@@ -119,7 +123,7 @@ fundkeep-app/
 
 ## Contributing
 
-Check [open issues](https://github.com/Michealshodipo56/fundkeep-app/issues) for work labelled `good first issue`. A keeper script that auto-calls `check_deadline` on overdue goals is the most-wanted first contribution.
+Check [open issues](https://github.com/fundkeep-web/fundkeep-app/issues) for work labelled `good first issue`. A keeper script that auto-calls `check_deadline` on overdue goals is the most-wanted first contribution.
 
 Branch naming: `feat/`, `fix/`, `docs/`, `test/`  
 Commit format: `type(scope): description` (Conventional Commits)

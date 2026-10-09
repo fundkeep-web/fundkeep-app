@@ -1,11 +1,11 @@
 # SDK Reference
 
-[`@fundkeep/sdk`](https://github.com/Michealshodipo56/fundkeep-sdk) is the TypeScript client for the FundKeep contract. It builds unsigned transactions and leaves signing to the caller — in the app, that's Freighter via `@stellar/freighter-api`.
+[`@fundkeep/sdk`](https://github.com/fundkeep-web/fundkeep-sdk) is the TypeScript client for the FundKeep contract. It builds unsigned transactions and leaves signing to the caller — in the app, that's Freighter via `@stellar/freighter-api`.
 
 Not published to npm. Install directly from GitHub:
 
 ```bash
-npm install github:Michealshodipo56/fundkeep-sdk
+npm install github:fundkeep-web/fundkeep-sdk
 ```
 
 ## `FundKeepClient`

@@ -34,11 +34,11 @@ Tests live in `src/test.rs`. Each test creates a fresh contract environment, reg
 
 ## SDK Tests
 
-[`fundkeep-sdk`](https://github.com/Michealshodipo56/fundkeep-sdk) has its own vitest suite (`npm test`), covering transaction-building argument encoding (mocked RPC, no network), the USDC stroops conversion helpers, and contract-error parsing.
+[`fundkeep-sdk`](https://github.com/fundkeep-web/fundkeep-sdk) has its own vitest suite (`npm test`), covering transaction-building argument encoding (mocked RPC, no network), the USDC stroops conversion helpers, and contract-error parsing.
 
 ## Indexer Tests
 
-[`fundkeep-indexer`](https://github.com/Michealshodipo56/fundkeep-indexer) has its own vitest suite (`npm test`), covering event decoding, the SQLite data layer, and the poller's event-to-database application logic against a mocked RPC.
+[`fundkeep-indexer`](https://github.com/fundkeep-web/fundkeep-indexer) has its own vitest suite (`npm test`), covering event decoding, the SQLite data layer, and the poller's event-to-database application logic against a mocked RPC.
 
 ## Frontend
 

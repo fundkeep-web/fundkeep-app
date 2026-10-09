@@ -18,7 +18,7 @@ Each entry records:
 
 ## Storage
 
-FundKeep reads wallet activity from [`fundkeep-indexer`](https://github.com/Michealshodipo56/fundkeep-indexer), which derives it from the contract's on-chain events (`goal_created`, `deposit`, `unlock`, `withdraw`). This history is consistent across browsers and devices. If the indexer is unreachable, the app can show only the recent activity cached in that browser.
+FundKeep reads wallet activity from [`fundkeep-indexer`](https://github.com/fundkeep-web/fundkeep-indexer), which derives it from the contract's on-chain events (`goal_created`, `deposit`, `unlock`, `withdraw`). This history is consistent across browsers and devices. If the indexer is unreachable, the app can show only the recent activity cached in that browser.
 
 On-chain transaction history is always independently recoverable via a Stellar blockchain explorer using your wallet address.
 

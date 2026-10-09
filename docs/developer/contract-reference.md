@@ -2,7 +2,7 @@
 
 This page documents the FundKeep Soroban contract interface for developers building tooling, integrations, or keeper scripts against it directly.
 
-**If you're building a TypeScript/JavaScript integration, use [`@fundkeep/sdk`](https://github.com/Michealshodipo56/fundkeep-sdk) instead of hand-rolling the calls below** — it handles transaction building, simulation, signing, submission, and error decoding. See the [SDK Reference](sdk-reference.md). The raw patterns here are for the Rust/CLI side, or for understanding what the SDK does under the hood.
+**If you're building a TypeScript/JavaScript integration, use [`@fundkeep/sdk`](https://github.com/fundkeep-web/fundkeep-sdk) instead of hand-rolling the calls below** — it handles transaction building, simulation, signing, submission, and error decoding. See the [SDK Reference](sdk-reference.md). The raw patterns here are for the Rust/CLI side, or for understanding what the SDK does under the hood.
 
 ## Invoking Functions via Soroban CLI
 

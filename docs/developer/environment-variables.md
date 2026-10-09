@@ -8,13 +8,13 @@ Create a `.env.local` file in the project root (`cp .env.example .env.local`). A
 | `NEXT_PUBLIC_USDC_CONTRACT_ID` | Yes | The SAC (Stellar Asset Contract) address of the token being saved | See below |
 | `NEXT_PUBLIC_STELLAR_NETWORK` | Yes | The deployed network; FundKeep v1 supports `testnet` | `testnet` |
 | `NEXT_PUBLIC_SOROBAN_RPC_URL` | Yes | Soroban RPC endpoint for the selected network | `https://soroban-testnet.stellar.org` |
-| `NEXT_PUBLIC_INDEXER_URL` | No | Base URL of a running [`fundkeep-indexer`](https://github.com/Michealshodipo56/fundkeep-indexer) instance, used for the activity feed and cross-device goal sync | `http://localhost:4000` |
+| `NEXT_PUBLIC_INDEXER_URL` | No | Base URL of a running [`fundkeep-indexer`](https://github.com/fundkeep-web/fundkeep-indexer) instance, used for the activity feed and cross-device goal sync | `http://localhost:4000` |
 
 The contract, token, network, and RPC variables are required for wallet actions. `NEXT_PUBLIC_INDEXER_URL` is optional, but without it the app cannot restore indexed activity or on-chain goals across devices.
 
 ## About `NEXT_PUBLIC_USDC_CONTRACT_ID`
 
-The deployed contract accepts the configured token SAC. [`fundkeep-contract`](https://github.com/Michealshodipo56/fundkeep-contract)'s `scripts/deploy.sh` prints the contract configuration but does not create a test USDC asset. Verify the token SAC against Testnet before using it. **Do not reuse an address you found in an old doc or example without verifying it on-chain first** — an invalid or stale address causes transactions to fail.
+The deployed contract accepts the configured token SAC. [`fundkeep-contract`](https://github.com/fundkeep-web/fundkeep-contract)'s `scripts/deploy.sh` prints the contract configuration but does not create a test USDC asset. Verify the token SAC against Testnet before using it. **Do not reuse an address you found in an old doc or example without verifying it on-chain first** — an invalid or stale address causes transactions to fail.
 
 ## Variables that don't exist
 

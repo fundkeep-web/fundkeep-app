@@ -8,9 +8,10 @@ Create a `.env.local` file in the project root (`cp .env.example .env.local`). A
 | `NEXT_PUBLIC_USDC_CONTRACT_ID` | Yes | The SAC (Stellar Asset Contract) address of the token being saved | See below |
 | `NEXT_PUBLIC_STELLAR_NETWORK` | Yes | The deployed network; FundKeep v1 supports `testnet` | `testnet` |
 | `NEXT_PUBLIC_SOROBAN_RPC_URL` | Yes | Soroban RPC endpoint for the selected network | `https://soroban-testnet.stellar.org` |
-| `NEXT_PUBLIC_INDEXER_URL` | No | Base URL of a running [`fundkeep-indexer`](https://github.com/fundkeep-web/fundkeep-indexer) instance, used for the activity feed and cross-device goal sync | `http://localhost:4000` |
+| `NEXT_PUBLIC_INDEXER_URL` | No | Primary [`fundkeep-indexer`](https://github.com/fundkeep-web/fundkeep-indexer) base URL for the activity feed and cross-device goal sync | `https://fundkeep-indexer.onrender.com` |
+| `NEXT_PUBLIC_INDEXER_FALLBACK_URL` | No | Secondary indexer used when the primary times out, has a network error, is rate limited, or returns a server error | `https://fundkeep-indexer-gnus.onrender.com` |
 
-The contract, token, network, and RPC variables are required for wallet actions. `NEXT_PUBLIC_INDEXER_URL` is optional, but without it the app cannot restore indexed activity or on-chain goals across devices.
+The contract, token, network, and RPC variables are required for wallet actions. The app uses the hosted primary and fallback indexers by default. Set `NEXT_PUBLIC_INDEXER_URL` and `NEXT_PUBLIC_INDEXER_FALLBACK_URL` to override them for another deployment.
 
 ## About `NEXT_PUBLIC_USDC_CONTRACT_ID`
 
